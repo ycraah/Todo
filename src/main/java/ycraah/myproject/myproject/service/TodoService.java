@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public enum TodoService {
   INSTANCE;
@@ -26,4 +27,13 @@ public enum TodoService {
     return todoDTOS;
   }
 
+  public TodoDTO get(Long tno){
+    TodoDTO dto = new TodoDTO();
+    dto.setTno(tno);
+    dto.setTitle("Sample Todo");
+    dto.setDueDate(LocalDate.now());
+    dto.setFinished(true);
+
+    return dto;
+  }
 }
