@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name="todoListController", urlPatterns="/todo/list")
-public class TodoListController extends HttpServlet {
-  @Override
+@WebServlet(name ="todoRegisterController", urlPatterns="/todo/register")
+public class TodoRegisterController extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req, resp);
+    req.getRequestDispatcher("/WEB-INF/todo/register.jsp").forward(req, resp);
+  }
+
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    resp.sendRedirect("/todo/list");
   }
 }
