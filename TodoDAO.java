@@ -1,8 +1,10 @@
 package ycraah.myproject.jdbcex.dao;
 
 import lombok.Cleanup;
+import ycraah.myproject.jdbcex.domain.TodoVO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -32,5 +34,17 @@ public class TodoDAO {
     return now;
   }
 
+  public void insert(TodoVO vo) throws Exception {
+    String sql = "insert into tbl_todo (title, dueDate, finished) values(?, ?, ?)";
+
+    @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+    @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+    preparedStatement.setString(1, vo.getTitle());
+    preparedStatement.setDate(2, Date.valueOf(vo.getDueDate()));
+    preparedStatement.setBoolean(3, vo.isFinished());
+
+    preparedStatement.executeUpdate();
+
+  }
 
 }
